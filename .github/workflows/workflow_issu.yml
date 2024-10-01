@@ -1,7 +1,7 @@
 name: le name
 on:
   issues:
-    types: opened
+    types: [opened]
 jobs:
   commentaire:
     runs-on: ubuntu-latest
@@ -10,7 +10,6 @@ jobs:
     steps:
       - name: Réponse à une issue
         env:
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          ISSUE_URL: ${{ github.event.issue.html_url }}
-
-        run: gh issue comment $ISSUE_URL --body "Merci d'avoir ouvert cette issue la"
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --body "Merci d'avoir ouvert cette issue."
