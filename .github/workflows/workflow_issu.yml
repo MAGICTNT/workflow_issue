@@ -14,3 +14,13 @@ jobs:
           ISSUE_URL: ${{ github.event.issue.html_url }}
 
         run: gh issue comment $ISSUE_URL --body "Merci d'avoir ouvert cette issue la"
+  variable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: mes var
+        env:
+          MA_VARIABLE: ${{ vars.VARIABLE_SECRET }}
+          MON_SECRET: ${{ secrets.MON_SECRET }}
+        run: |
+          echo "le secret est $MON_SECRET"
+          echo "MA variable est $MA_VARIABLE"
